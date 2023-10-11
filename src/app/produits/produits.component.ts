@@ -1,13 +1,24 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {Produit} from "../model/produit.model";
+import {ProduitService} from "../services/produit.service";
 
 @Component({
   selector: 'app-produits',
   templateUrl: './produits.component.html'
 })
 export class ProduitsComponent {
-  produits: string[];
+  produits?: Produit[];
+  private produitService =  new ProduitService();
 
   constructor() {
-    this.produits = ["PC Asus", "Imprimante Epson", "Tablette Samsung"];
+
+  }
+
+  ngOnInit(): void{
+    this.produits = this.produitService.listeProduit();
+  }
+
+  supprimerProduit(p: Produit){
+
   }
 }
