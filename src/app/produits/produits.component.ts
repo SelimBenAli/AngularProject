@@ -8,9 +8,8 @@ import {ProduitService} from "../services/produit.service";
 })
 export class ProduitsComponent {
   produits?: Produit[];
-  private produitService =  new ProduitService();
 
-  constructor() {
+  constructor(private produitService:ProduitService) {
 
   }
 
