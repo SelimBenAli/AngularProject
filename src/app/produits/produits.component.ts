@@ -9,15 +9,18 @@ import {ProduitService} from "../services/produit.service";
 export class ProduitsComponent {
   produits?: Produit[];
 
-  constructor(private produitService:ProduitService) {
+  constructor(private produitService: ProduitService) {
 
   }
 
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.produits = this.produitService.listeProduit();
   }
 
-  supprimerProduit(p: Produit){
-
+  supprimerProduit(p: Produit) {
+    //console.log(p);
+    let conf = confirm("Etes-vous sûr ?");
+    if (conf)
+      this.produitService.supprimerProduit(p);
   }
 }
