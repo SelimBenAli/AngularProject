@@ -10,17 +10,26 @@ export class ProduitsComponent {
   produits?: Produit[];
 
   constructor(private produitService: ProduitService) {
-
+    //this.produits = this.produitService.listeProduit();
   }
 
   ngOnInit(): void {
-    this.produits = this.produitService.listeProduit();
+    this.chargerProduits();
+  }
+
+  chargerProduits() {
+    this.produitService.listeProduit().subscribe(prods => {
+      console.log(prods);
+      this.produits = prods;
+    });
   }
 
   supprimerProduit(p: Produit) {
-    //console.log(p);
     let conf = confirm("Etes-vous sûr ?");
     if (conf)
-      this.produitService.supprimerProduit(p);
+      this.produitService.supprimerProduit(p.idProduit!).subscribe(() => {
+        console.log("produit supprimé");
+        this.chargerProduits();
+      });
   }
 }
