@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {Produit} from "../model/produit.model";
 import {ProduitService} from "../services/produit.service";
+import {AuthService} from "../services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-produits',
@@ -9,7 +11,9 @@ import {ProduitService} from "../services/produit.service";
 export class ProduitsComponent {
   produits?: Produit[];
 
-  constructor(private produitService: ProduitService) {
+  constructor(private produitService: ProduitService,
+              private router: Router,
+              public authService: AuthService) {
     //this.produits = this.produitService.listeProduit();
   }
 
